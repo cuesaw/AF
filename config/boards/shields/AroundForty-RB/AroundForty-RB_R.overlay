@@ -18,19 +18,32 @@
         ;
 };
 
+&zip_temp_layer {
+    require-prior-idle-ms = <200>;
+    excluded-positions = <
+        5 6 7
+        18 17 16 15
+        26 27 28 29
+    >;
+};
+
 / {
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>,
-                           <&zip_xy_scaler 1 1>,
-                           <&zip_temp_layer 9 300>;
+                           <&zip_xy_scaler 1 1>;
 
         scroll-layer {
             layers = <8>;
             input-processors = <&zip_xy_to_scroll_mapper>,
                                <&zip_scroll_scaler 1 45>,
                                <&zip_scroll_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+        };
+
+        aml-by-motion {
+            layers = <0 1 2 3 4 5 6 7 8>;
+            input-processors = <&zip_temp_layer 9 2000>;
         };
     };
 };
@@ -72,8 +85,9 @@
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
-        cpi = <550>;
+        cpi = <400>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        scroll-layers = <8>;
         force-awake;
     };
 };
