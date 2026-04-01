@@ -308,4 +308,4 @@
 /* ★ ここは “トップレベル”。/ { … } の “外” に置くのが正解！ */
 /* クリックなどのマウス操作のたびに MOUSE(=6) を 2000ms 延長（AML用） */
 
-&mkp_input_listener { input-processors = <&zip_temp_layer 9 2000>; };
+&mkp_input_listener { input-processors = <&zip_temp_layer 9 5000>; };
