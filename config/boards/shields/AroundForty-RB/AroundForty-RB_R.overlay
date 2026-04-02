@@ -19,7 +19,7 @@
 };
 
 &zip_temp_layer {
-    require-prior-idle-ms = <350>;
+    require-prior-idle-ms = <1200>;
 };
 
 / {
@@ -38,7 +38,7 @@
 
         aml-by-motion {
             layers = <0 1 2 3 4 5 7 8>;
-            input-processors = <&zip_temp_layer 9 900>;
+            input-processors = <&zip_temp_layer 9 700>;
         };
     };
 };
